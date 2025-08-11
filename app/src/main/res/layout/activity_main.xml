@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/btnStartSortie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Sortie" />
+
+    <Button
+        android:id="@+id/btnStopSortie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop Sortie" />
+
+    <Button
+        android:id="@+id/btnViewSorties"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Sorties" />
+
+    <Button
+        android:id="@+id/btnFdtl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FDTL Calculator" />
+</LinearLayout>
