@@ -6,30 +6,31 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.sortielogger.db.AppDatabase
 import com.example.sortielogger.model.Sortie
-import kotlinx.android.synthetic.main.activity_sortie_edit.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import com.example.sortielogger.databinding.ActivitySortieEditBinding
 import java.util.*
 
 class SortieEditActivity : AppCompatActivity() {
     private val fmtTime = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).apply { timeZone = TimeZone.getTimeZone("UTC") }
     private val fmtDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).apply { timeZone = TimeZone.getTimeZone("UTC") }
     private val db by lazy { AppDatabase.get(this) }
+    private lateinit var binding: ActivitySortieEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sortie_edit)
+        binding = ActivitySortieEditBinding.inflate(layoutInflater)
 
-        tvUtcDate.text = fmtDate.format(Date())
+        binding.tvUtcDate.text = fmtDate.format(Date())
 
-        btnStart.setOnClickListener { etOffBlock.setText(fmtTime.format(Date())) }
-        btnAirborne.setOnClickListener { etAirborne.setText(fmtTime.format(Date())) }
-        btnTouchdown.setOnClickListener { etTouchdown.setText(fmtTime.format(Date())) }
-        btnStop.setOnClickListener { etOnBlock.setText(fmtTime.format(Date())) }
+        binding.btnSaveSortie.setOnClickListener { binding.etOffBlock.setText(fmtTime.format(Date())) }
+        binding.btnSaveSortie.setOnClickListener { binding.etAirborne.setText(fmtTime.format(Date())) }
+        binding.btnSaveSortie.setOnClickListener { binding.etTouchdown.setText(fmtTime.format(Date())) }
+        binding.btnSaveSortie.setOnClickListener { binding.etOnBlock.setText(fmtTime.format(Date())) }
 
         // manual time picker: tap EditText to open TimePicker (UTC)
-        listOf(etOffBlock, etAirborne, etTouchdown, etOnBlock).forEach { et ->
+        listOf(binding.etOffBlock, binding.etAirborne, binding.etTouchdown, binding.etOnBlock).forEach { et ->
             et.setOnClickListener {
                 val cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
                 TimePickerDialog(this, { _, h, m ->
@@ -39,15 +40,15 @@ class SortieEditActivity : AppCompatActivity() {
             }
         }
 
-        btnSave.setOnClickListener {
+        binding.btnSaveSortie.setOnClickListener {
             val sortie = Sortie(
                 date = Date(),
-                aircraftReg = etAircraft.text.toString(),
-                offBlock = etOffBlock.text.toString(),
-                airborne = etAirborne.text.toString(),
-                touchdown = etTouchdown.text.toString(),
-                onBlock = etOnBlock.text.toString(),
-                remarks = etRemarks.text.toString()
+                aircraftReg = binding.etAircraft.text.toString(),
+                offBlock = binding.etOffBlock.text.toString(),
+                airborne = binding.etAirborne.text.toString(),
+                touchdown = binding.etTouchdown.text.toString(),
+                onBlock = binding.etOnBlock.text.toString(),
+                remarks = binding.etRemarks.text.toString()
             )
             lifecycleScope.launch(Dispatchers.IO) {
                 db.sortieDao().insert(sortie)

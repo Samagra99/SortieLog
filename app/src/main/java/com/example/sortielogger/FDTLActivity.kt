@@ -5,19 +5,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.sortielogger.db.AppDatabase
 import com.example.sortielogger.util.FDTLCalculator
-import kotlinx.android.synthetic.main.activity_fdtl.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.sortielogger.databinding.ActivityFdtlBinding
 
 class FDTLActivity : AppCompatActivity() {
     private val db by lazy { AppDatabase.get(this) }
+    private lateinit var binding: ActivityFdtlBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_fdtl)
+        binding = ActivityFdtlBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnCheck.setOnClickListener {
+        binding.btnCalculateFdtl.setOnClickListener {
             lifecycleScope.launch {
                 val sorties = withContext(Dispatchers.IO) { db.sortieDao().getAll() }
                 val results = FDTLCalculator.checkLimitsUsingBlockTime(sorties)
@@ -28,7 +30,7 @@ class FDTLActivity : AppCompatActivity() {
                     if (total > max) sb.append("  ⚠️ EXCEEDED")
                     sb.append("\n")
                 }
-                tvResults.text = sb.toString()
+                binding.tvFdtlResults.text = sb.toString()
             }
         }
     }

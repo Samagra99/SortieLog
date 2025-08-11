@@ -44,11 +44,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="On Block Time (HH:MM UTC)" />
+        
+        <EditText
+            android:id="@+id/etRemarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="On Block Time (HH:MM UTC)" />
 
         <Button
             android:id="@+id/btnSaveSortie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save Sortie" />
+
+        <TextView
+        android:id="@+id/tvUtcDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="00:00:00"
+        android:textSize="24sp"
+        android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

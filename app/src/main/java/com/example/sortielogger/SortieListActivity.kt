@@ -7,23 +7,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.sortielogger.db.AppDatabase
 import com.example.sortielogger.util.CsvExporter
-import kotlinx.android.synthetic.main.activity_sortie_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
+import com.example.sortielogger.databinding.ActivitySortieListBinding
 import java.util.*
 
 class SortieListActivity : AppCompatActivity() {
     private val db by lazy { AppDatabase.get(this) }
     private val dateFmt = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).apply { timeZone = TimeZone.getTimeZone("UTC") }
+    private lateinit var binding: ActivitySortieListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sortie_list)
+        binding = ActivitySortieListBinding.inflate(layoutInflater)
 
-        btnRefresh.setOnClickListener { loadList() }
-        btnExport.setOnClickListener {
+        binding.btnRefresh.setOnClickListener { loadList() }
+        binding.btnExportCsv.setOnClickListener {
             lifecycleScope.launch {
                 val sorties = withContext(Dispatchers.IO) { db.sortieDao().getAll() }
                 val file = withContext(Dispatchers.IO) { CsvExporter.exportSorties(this@SortieListActivity, sorties) }
@@ -31,7 +32,7 @@ class SortieListActivity : AppCompatActivity() {
             }
         }
 
-        lvSorties.setOnItemClickListener { _, _, position, _ ->
+        binding.sortieListView.setOnItemClickListener { _, _, position, _ ->
             // For now open editor (edit-by-id could be implemented later)
             startActivity(Intent(this, SortieEditActivity::class.java))
         }
@@ -45,7 +46,7 @@ class SortieListActivity : AppCompatActivity() {
             val items = list.map { s ->
                 "${dateFmt.format(s.date)}  ${s.aircraftReg.ifEmpty { "N/A" }}  Off:${s.offBlock} On:${s.onBlock}"
             }
-            lvSorties.adapter = ArrayAdapter(this@SortieListActivity, android.R.layout.simple_list_item_1, items)
+            binding.sortieListView.adapter = ArrayAdapter(this@SortieListActivity, android.R.layout.simple_list_item_1, items)
         }
     }
 

@@ -5,7 +5,7 @@ import androidx.room.*
 import com.example.sortielogger.model.Sortie
 import java.util.*
 
-@Database(entities = [Sortie::class], version = 1)
+@Database(entities = [Sortie::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun sortieDao(): SortieDao
