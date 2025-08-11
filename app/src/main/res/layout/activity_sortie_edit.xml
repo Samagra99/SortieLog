@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/etAircraft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Aircraft" />
+
+        <EditText
+            android:id="@+id/etDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date (YYYY-MM-DD)" />
+
+        <EditText
+            android:id="@+id/etOffBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Off Block Time (HH:MM UTC)" />
+
+        <EditText
+            android:id="@+id/etAirborne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Airborne Time (HH:MM UTC)" />
+
+        <EditText
+            android:id="@+id/etTouchdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Touchdown Time (HH:MM UTC)" />
+
+        <EditText
+            android:id="@+id/etOnBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="On Block Time (HH:MM UTC)" />
+
+        <Button
+            android:id="@+id/btnSaveSortie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Sortie" />
+    </LinearLayout>
+</ScrollView>
