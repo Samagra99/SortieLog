@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Sortie Log</string>
+
+    <!-- Main Menu -->
+    <string name="log_sortie">Log New Sortie</string>
+    <string name="view_sorties">View Sorties</string>
+    <string name="fdtl_calculator">FDTL Calculator</string>
+    <string name="export_csv">Export to CSV</string>
+
+    <!-- Sortie Edit -->
+    <string name="off_block">Off Block</string>
+    <string name="airborne">Airborne</string>
+    <string name="touchdown">Touchdown</string>
+    <string name="on_block">On Block</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- FDTL -->
+    <string name="calculate">Calculate</string>
+    <string name="fdtl_result">FDTL Result</string>
+</resources>
