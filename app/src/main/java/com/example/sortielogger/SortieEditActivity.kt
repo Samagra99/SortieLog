@@ -21,6 +21,7 @@ class SortieEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySortieEditBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.tvUtcDate.text = fmtDate.format(Date())
 

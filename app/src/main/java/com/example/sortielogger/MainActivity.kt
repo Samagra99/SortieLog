@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.btnStartSortie.setOnClickListener { startActivity(Intent(this, SortieEditActivity::class.java)) }
         binding.btnViewSorties.setOnClickListener { startActivity(Intent(this, SortieListActivity::class.java)) }

@@ -22,6 +22,7 @@ class SortieListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySortieListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.btnRefresh.setOnClickListener { loadList() }
         binding.btnExportCsv.setOnClickListener {
