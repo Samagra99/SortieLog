@@ -1,0 +1,76 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "e0e62b3acf6e84fd21611dd7b5f03f46",
+    "entities": [
+      {
+        "tableName": "sorties",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER NOT NULL, `aircraftReg` TEXT NOT NULL, `offBlock` TEXT NOT NULL, `airborne` TEXT NOT NULL, `touchdown` TEXT NOT NULL, `onBlock` TEXT NOT NULL, `remarks` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aircraftReg",
+            "columnName": "aircraftReg",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "offBlock",
+            "columnName": "offBlock",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "airborne",
+            "columnName": "airborne",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "touchdown",
+            "columnName": "touchdown",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "onBlock",
+            "columnName": "onBlock",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remarks",
+            "columnName": "remarks",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e0e62b3acf6e84fd21611dd7b5f03f46')"
+    ]
+  }
+}

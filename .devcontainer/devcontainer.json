@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json. For more info, see the VS Code Remote Development documentation
+{
+  "name": "Android Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      // Choose a Linux distribution for the base image
+      "VARIANT": "jammy"
+    }
+  },
+
+  // Set environment variables for Android SDK and other paths
+  "remoteEnv": {
+    "ANDROID_HOME": "/usr/local/lib/android/sdk",
+    "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64",
+    "PATH": "${containerEnv:PATH}:/usr/local/lib/android/sdk/cmdline-tools/latest/bin:/usr/local/lib/android/sdk/platform-tools:/usr/lib/jvm/openjdk-17-jdk/bin"
+  },
+
+  // Configure port forwarding for debugging
+  "forwardPorts": [5005], // Example port for a local server or debug sessions
+
+  // Install VS Code extensions for a better development experience
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.java",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
+        "editorconfig.editorconfig"
+      ]
+    }
+  },
+
+  // Use a post-create command to download necessary Android SDK components
+  "postCreateCommand": "yes | sdkmanager --licenses && sdkmanager 'platform-tools' 'platforms;android-32' 'build-tools;32.0.0'",
+
+  // To allow access to the Docker daemon for building and testing images inside the container
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest"
+    }
+  }
+}
